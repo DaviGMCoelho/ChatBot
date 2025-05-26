@@ -1,0 +1,13 @@
+[   ] - create classes
+    [   ] - User
+        [ X ] - Parameters
+        [   ] - Methods
+    [   ] - Message
+        [   ] - Parameters
+        [   ] - Methods
+    [   ] - Chats
+        [   ] - Parameters
+        [   ] - Methods
+
+[   ] - conect to database
+[   ] -  

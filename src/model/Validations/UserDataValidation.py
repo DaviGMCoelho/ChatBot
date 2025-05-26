@@ -1,0 +1,6 @@
+class UserDataValidations:
+    def NameValidation():
+        ...
+
+    def PasswordValidation():
+        ...
