@@ -1,8 +1,33 @@
 class User:
-    def __init__(self, name: str, password: str):
-        self.name = name
-        self._password = password # Indica que o atributo é "Protegido"
+    
+    def __init__(self, username: str, password: str, cod_user: str):
+        self.username = username
+        self._password = password
+        self.cod_user = generate_cod_user(username)
 
-    def validate_password(self):
-        if len(self.passoword) < 8:
+
+    def signup(self):
+        if len(self.password) < 8:
             raise ValueError('Senha muito curta')
+        
+
+if __name__ == '__main__':
+    def generate_cod_user(username):
+        letters = [letter for letter in username] # Quebra o username letra por letra
+        letters_size = len(letters)
+        for _ in range(letters_size):
+            random_letter = hash(str(username) + str(_)) % letters_size # Pega o hash de usernamme junto de letter e faz divisão inteira pelo tamanho do nome
+            letters[_], letters[random_letter] = letters[random_letter], letters[_] # Embaralha a leita
+        four_letters = ''.join(letters)[0:4] # Cria uma string com o nome embaralhado e pega as 4 primeiras letras
+        hash_four_letters = hash(four_letters) # Gera um hash das 4 primeiras letras
+        if hash_four_letters < 0:
+            hash_four_letters = hash_four_letters * -1 # Passa positivo se for negativo
+        str_hash = str(hash_four_letters)
+        if len(str_hash) < 6:
+            str_hash = str_hash.zfill(6) # Preenche com zero se quantidade caracteres for menor que 6
+        five_numbers = str_hash[0:6]
+        return four_letters + '@' + five_numbers
+    
+    print(generate_cod_user('Andressa'))
+
+

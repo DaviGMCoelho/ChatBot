@@ -32,16 +32,24 @@ class FrameDatas(CTk.CTkFrame):
         self.ent_conf_password = CTk.CTkEntry(self, placeholder_text = 'Digite novamente sua senha', width = WIDTH_ENTRY, show = '*', fg_color = FG_COLOR, placeholder_text_color = TEXT_COLOR, text_color=TEXT_COLOR)
         self.ent_conf_password.grid(row=2, column=1, padx=10)
 
+        
+
+    def button_signin(self):
+        user = User(self.ent_username, self.ent_password)
+
+    def button_signup(self):
+        print('cadastrando') # Implementar lógica de cadastro
+
 
 
 
 class FrameButton(CTk.CTkFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.btn_signin = CTk.CTkButton(self, text='Cadastrar dados', command = SignupInterface.button_signup, text_color = TEXT_COLOR, fg_color = 'Light Gray', width=WIDTH_BUTTOM)
+        self.btn_signin = CTk.CTkButton(self, text='Cadastrar dados', command = lambda: FrameDatas.button_signup, text_color = TEXT_COLOR, fg_color = 'Light Gray', width=WIDTH_BUTTOM)
         self.btn_signin.grid(row=0, column=0, padx=(0, 10))
 
-        self.btn_signup = CTk.CTkButton(self, text='Entrar', command = SignupInterface.button_signin, text_color = TEXT_COLOR, fg_color = 'Light Gray', width=WIDTH_BUTTOM)
+        self.btn_signup = CTk.CTkButton(self, text='Entrar', command = lambda: FrameDatas.button_signin, text_color = TEXT_COLOR, fg_color = 'Light Gray', width=WIDTH_BUTTOM)
         self.btn_signup.grid(row=0, column=1, padx=(10, 0))
     
 
@@ -62,13 +70,6 @@ class SignupInterface(CTk.CTk):
         self.frm_datas.pack(padx=5, pady=10)
         self.frm_button = FrameButton(self, fg_color=FG_COLOR, border_color=BORDER_COLOR)
         self.frm_button.pack(padx=5, pady=10, side='bottom')
-
-    def button_signin(self):
-        print(vars(User))
-        
-    def button_signup(self):
-        User(self.frm_datas.ent_password.get(), self.frm_datas.ent_conf_password.get())
-        print(vars(User))
 
 
 window = SignupInterface()
