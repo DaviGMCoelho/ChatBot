@@ -1,0 +1,16 @@
+[   ] - create entities
+    [   ] - User
+        [ X ] - Parameters
+        [   ] - Methods
+            [ X ] - Signin
+            [ X ] - Signup
+            [   ] - Edit profile
+    [   ] - Message
+        [   ] - Parameters
+        [   ] - Methods
+    [   ] - Chats
+        [   ] - Parameters
+        [   ] - Methods
+
+[ X ] - conect to database
+[   ] -  
