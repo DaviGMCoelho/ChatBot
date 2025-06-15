@@ -4,6 +4,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 
 from Controller.UserController import UserController
 from View.Desktop.ViewUtils.InformationMessage import InformationMessage
+from View.Desktop.ChatBotMainInterface import ChatBotMainInterface
 
 import customtkinter as CTk
 
@@ -80,6 +81,8 @@ class RegisterInterface(CTk.CTk):
         if message['status']:
             title = 'Cadastro realizado com sucesso!'
             warning = f'Seu código de identificação: {cod_profile}, anote!'
+            MainInterface = ChatBotMainInterface()
+            MainInterface.mainloop()
         else:
             title = 'Ocorreu um erro!'
             warning = f'Erro: {message['message']}'

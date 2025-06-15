@@ -1,16 +1,32 @@
 [   ] - create entities
     [   ] - User
         [ X ] - Parameters
+            [ X ] - Cod_Profile
+            [ X ] - Password
+            [ X ] - Username
         [   ] - Methods
             [ X ] - Signin
             [ X ] - Signup
             [   ] - Edit profile
-    [   ] - Message
-        [   ] - Parameters
+            [   ] - Active User
+    [   ] - Messages
+        [ X ] - Parameters
+            [ X ] - Origin / Role
+            [ X ] - Content
         [   ] - Methods
+            [ X ] - Memory
+                [ X ] - Recent Memory
+                [   ] - Older Memory
     [   ] - Chats
         [   ] - Parameters
+            [   ] - Chat Identifier
+            [   ] - Title
+            [   ] - Background
         [   ] - Methods
+            [   ] - Create chat
+            [   ] - Chat with messages
+            [   ] - Personalized prompt for each chat?
+            [   ] - 
 
 [ X ] - conect to database
 [   ] -  

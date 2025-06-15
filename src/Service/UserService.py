@@ -3,12 +3,13 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 
-from src.Validations.UserValidation import UserValidation
+from src.Validation.UserValidation import UserValidation
 from src.Model.Entities.User import User
-from Services.ServicesUtils import ServicesUtils
+from Utils.ServiceUtils import ServiceUtils
 from src.Model.Entities.Database import Database
+from src.Utils.SessionUtils import SessionUtils
 
-class UserServices:
+class UserService:
     @staticmethod 
     def create_new_user(username, password, conf_password):
         cod_profile = ''
@@ -28,16 +29,20 @@ class UserServices:
 
         user = User(username, password, cod_profile)
         Database.insert_profile(user)
-        status_message = ServicesUtils.generate_status_message(True, 'Cadastro realizado')
+        status_message = ServiceUtils.generate_status_message(True, 'Cadastro realizado')
+        SessionUtils.set_user(cod_profile)
         return status_message, cod_profile
 
     @staticmethod
     def user_auth(cod_profile, password):
         auth = Database.authentication_user(cod_profile, password)
         if auth:
-            return ServicesUtils.generate_status_message(True, 'Login realizado')
-        return ServicesUtils.generate_status_message(False, 'identificador ou senha incorretos')
+            SessionUtils.set_user(cod_profile)
+            status_message = ServiceUtils.generate_status_message(True, 'Login realizado')
+            return status_message
+        status_message = ServiceUtils.generate_status_message(False, 'identificador ou senha incorretos')
+        return status_message
 
     
 if __name__ == '__main__':
-    print(UserServices.create_new_user('Adenilson', 'espada78', 'espada78'))
+    ...

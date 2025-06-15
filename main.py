@@ -8,9 +8,8 @@ class Main():
     @staticmethod
     def start_program():
         if not os.path.exists(r'data\database\chatbot.db'):
-            Database.init_database
+            Database.init_database()
         window = AuthenticationInterface()
         window.mainloop()
-
 
 Main.start_program()

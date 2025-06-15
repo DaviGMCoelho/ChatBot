@@ -2,15 +2,20 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from src.Services.UserServices import UserServices
+from src.Service.UserService import UserService
 
 class UserController:
     @staticmethod
     def signup (username, password, conf_password):
-        return UserServices.create_new_user(username, password, conf_password)
+        message, cod_profile = UserService.create_new_user(username, password, conf_password)
+        return message, cod_profile
     
     @staticmethod
     def signin (cod_profile, password):
-        return UserServices.user_auth(cod_profile, password)
+        return UserService.user_auth(cod_profile, password)
+    
+
+if __name__ == '__main__':
+    print(UserController.signin('ivad@421033', 'ariuepa7'))
 
     

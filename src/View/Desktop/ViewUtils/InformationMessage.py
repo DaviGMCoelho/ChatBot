@@ -18,6 +18,8 @@ class InformationMessage(CTk.CTkToplevel):
     def button_click(self):
         self.destroy()
 
+        
+
 if __name__ == '__main__':
     ...
     

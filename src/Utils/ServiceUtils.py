@@ -1,6 +1,4 @@
-from tkinter import messagebox
-
-class ServicesUtils:
+class ServiceUtils:
 
     @staticmethod
     def generate_status_message(bool, message):
