@@ -3,6 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from Controller.UserController import UserController
+from Controller.ChatbotController import ChatbotController
 from View.Desktop.ViewUtils.InformationMessage import InformationMessage
 from View.Desktop.ChatBotMainInterface import ChatBotMainInterface
 
@@ -13,6 +14,7 @@ WIDTH_BUTTOM = 100
 FG_COLOR = 'White'
 BORDER_COLOR = 'White'
 TEXT_COLOR = 'Black'
+IA_MODELS = ChatbotController.get_ia_models()
 
 
 class FrameDataSignup(CTk.CTkFrame):

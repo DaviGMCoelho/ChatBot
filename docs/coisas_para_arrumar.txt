@@ -1,0 +1,3 @@
+[  ] - sistema de usuário ativo
+    [  ] - Importação estranha : Funciona no UserServices mas não na current_user
+[  ] - importações confusas, usos de sys e os para adicionar no pathlib
