@@ -9,7 +9,6 @@ from src.Manager.ModelManager import ModelManager
 class ChatbotController:
     # Realiza pergunta ao modelo e recebe a resposta
     def send_response(self, user_message: str):
-        print(user_message)
         response = ChatbotService.generate_response(user_message)
         ChatbotService.save_message(user_message, response)
         return response

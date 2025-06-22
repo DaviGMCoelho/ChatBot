@@ -55,13 +55,17 @@ class Database:
             cursor.execute(sql_query_credentials, profile_credentials,)
 
     @staticmethod
-    def insert_message(message):
-        sql_query = Database._load_query(r'data\database\sql_queries\insert\insert_message.sql')
-        message = (message.origin, message.content)
+    def insert_message(message, cod_profile):
+        sql_message = Database._load_query(r'data\database\sql_queries\insert\insert_message.sql')
+        sql_profile_id = Database._load_query(r'data\database\sql_queries\select\select_profile_id.sql')
 
         connection, cursor = Database._connect_database()
         with connection:
-            cursor.execute(sql_query, message)
+            cursor.execute(sql_profile_id, (cod_profile,))
+            profile_id = cursor.fetchone()[0]
+
+            data = (message.origin, message.content, profile_id)
+            cursor.execute(sql_message, data)
     
     @staticmethod
     def authentication_user(cod_profile, password):
@@ -98,12 +102,15 @@ class Database:
         }
 
     @staticmethod
-    def message_history():
-        sql_query = Database._load_query(r'data\database\sql_queries\select\select_messages.sql')
+    def message_history(cod_profile):
+        sql_messages = Database._load_query(r'data\database\sql_queries\select\select_messages.sql')
+        sql_profile_id = Database._load_query(r'data\database\sql_queries\select\select_profile_id.sql')
         connection, cursor = Database._connect_database()
-
+ 
         with connection:
-            cursor.execute(sql_query)
+            cursor.execute(sql_profile_id, (cod_profile,))
+            profile_id = cursor.fetchone()
+            cursor.execute(sql_messages, profile_id)
         messages = cursor.fetchall()
         new_messages = [{'role': role, 'content': content} for role, content in messages]
         return new_messages

@@ -27,14 +27,18 @@ class ChatbotService:
     
     @staticmethod
     def save_message (user_message, assistant_message):
+        user = CurrentUser()
+        cod_profile = user.get_current_user()['cod_profile']
         message_user = Message('user', user_message)
         message_assistant = Message('assistant', assistant_message)
-        Database.insert_message(message_user)
-        Database.insert_message(message_assistant)
+        Database.insert_message(message_user, cod_profile)
+        Database.insert_message(message_assistant, cod_profile)
 
     @staticmethod
     def catch_history():
-        message_history = Database.message_history()
+        user = CurrentUser()
+        cod_profile = user.get_current_user()['cod_profile']
+        message_history = Database.message_history(cod_profile)
         return message_history
     
 
@@ -42,5 +46,5 @@ if __name__ == '__main__':
     chatbot = ChatbotService()
     user = 'Como você está?'
     print('gerando resposta')
-    resposta = chatbot.generate_response(user)
+    resposta = chatbot.catch_history('iaDv@355597')
     print(resposta)
