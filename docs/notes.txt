@@ -1,32 +1,35 @@
-[   ] - create entities
+[   ] - criar entidades
     [   ] - User
-        [ X ] - Parameters
+        [ X ] - Parâmetros
             [ X ] - Cod_Profile
             [ X ] - Password
             [ X ] - Username
-        [   ] - Methods
-            [ X ] - Signin
-            [ X ] - Signup
-            [   ] - Edit profile
-            [   ] - Active User
-    [   ] - Messages
-        [ X ] - Parameters
-            [ X ] - Origin / Role
-            [ X ] - Content
-        [   ] - Methods
-            [ X ] - Memory
-                [ X ] - Recent Memory
-                [   ] - Older Memory
-    [   ] - Chats
-        [   ] - Parameters
-            [   ] - Chat Identifier
-            [   ] - Title
-            [   ] - Background
-        [   ] - Methods
-            [   ] - Create chat
-            [   ] - Chat with messages
-            [   ] - Personalized prompt for each chat?
-            [   ] - 
+        [   ] - Métodos
+            [ X ] - Cadastro
+            [ X ] - Entrada
+            [   ] - Editar perfil
+            [ X ] - Usuário ativo
+                [ X ] - Definir modelos padrão
 
-[ X ] - conect to database
+    [   ] - Mensagens
+        [ X ] - Parâmetros
+            [ X ] - Role
+            [ X ] - Content
+        [   ] - Métodos
+            [ X ] - Memória
+                [ X ] - Memória recente
+                [   ] - Memmória antiga
+                    [   ] - RAG
+                    [   ] - Resumo chat e mensagens
+
+    [   ] - Chats (DEPENDE USUÁRIO ATIVO)
+        [   ] - Parâmetreos
+            [   ] - Cod_Chat
+            [   ] - Título
+            [   ] - Plano de fundo
+        [   ] - Methods
+            [   ] - Criar chats
+            [   ] - Prompt personalizado por chat?
+
+[ X ] - Conectar com o banco de dados
 [   ] -  

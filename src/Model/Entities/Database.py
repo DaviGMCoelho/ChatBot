@@ -17,7 +17,6 @@ class Database:
         with open(path, 'r') as archive:
             return archive.read()
         
-    
     @staticmethod
     def init_database():
         connection, cursor = Database._connect_database()
@@ -33,9 +32,10 @@ class Database:
     @staticmethod
     def verify_cod_profile(cod_profile):
         sql_query = Database._load_query(r'data\database\sql_queries\verify\verify_cod_profile.sql')
+        data = (cod_profile,)
         connection, cursor = Database._connect_database()
         with connection:
-            cursor.execute(sql_query, (cod_profile,))
+            cursor.execute(sql_query, data)
         search = cursor.fetchone()
         return search is not None
     
@@ -54,7 +54,15 @@ class Database:
             profile_credentials = (last_id, user._password)
             cursor.execute(sql_query_credentials, profile_credentials,)
 
+    @staticmethod
+    def insert_message(message):
+        sql_query = Database._load_query(r'data\database\sql_queries\insert\insert_message.sql')
+        message = (message.origin, message.content)
 
+        connection, cursor = Database._connect_database()
+        with connection:
+            cursor.execute(sql_query, message)
+    
     @staticmethod
     def authentication_user(cod_profile, password):
         sql_query = Database._load_query(r'data\database\sql_queries\auth\auth_login.sql')
@@ -66,15 +74,28 @@ class Database:
         search = cursor.fetchone()
         return search is not None
     
+    @staticmethod
+    def set_text_model(model, cod_profile):
+        sql_query = Database._load_query(r'data\database\sql_queries\update\update_text_model.sql')
+        data = (model, cod_profile)
+        connection, cursor = Database._connect_database()
+        
+        with connection:
+            cursor.execute(sql_query, data)
 
     @staticmethod
-    def insert_message(origin, content):
-        sql_query = Database._load_query(r'data\database\sql_queries\insert\insert_message.sql')
-        message = (origin, content)
-
+    def get_user_data(cod_profile: str):
+        sql_query = Database._load_query(r'data\database\sql_queries\select\select_user_data.sql')
+        data = (cod_profile,)
         connection, cursor = Database._connect_database()
+
         with connection:
-            cursor.execute(sql_query, message)
+            cursor.execute(sql_query, data)
+        search = cursor.fetchone()
+        return {
+            'username':search[0],
+            'text_model':search[1]
+        }
 
     @staticmethod
     def message_history():
@@ -89,4 +110,4 @@ class Database:
 
 
 if __name__ == '__main__':
-   Database.init_database()
+   print(Database.get_user_data("iaDv@355597"))

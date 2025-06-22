@@ -19,14 +19,14 @@ class FrameDataSignin(CTk.CTkFrame):
         super().__init__(master, **kwargs)
 
         self.lbl_cod_profile = CTk.CTkLabel(self, text = 'Identificador:', font=('Arial', 12, 'bold'), text_color = TEXT_COLOR)
-        self.lbl_cod_profile.grid(row=0, column=0, padx=5)
+        self.lbl_cod_profile.grid(row=0, column=0, padx=5, pady=5)
         self.ent_cod_profile = CTk.CTkEntry(self, placeholder_text = 'Insira seu código de usuário', width = WIDTH_ENTRY, fg_color = FG_COLOR, placeholder_text_color = TEXT_COLOR, text_color=TEXT_COLOR)
-        self.ent_cod_profile.grid(row=0, column=1, padx=10)
+        self.ent_cod_profile.grid(row=0, column=1, padx=10, pady=5)
 
-        self.lbl_password = CTk.CTkLabel(self, text = 'Senha', font=('Arial', 12, 'bold'), text_color = TEXT_COLOR)
-        self.lbl_password.grid(row=1, column=0, padx=5)
+        self.lbl_password = CTk.CTkLabel(self, text = 'Senha:', font=('Arial', 12, 'bold'), text_color = TEXT_COLOR)
+        self.lbl_password.grid(row=1, column=0, padx=5, pady=5)
         self.ent_password = CTk.CTkEntry(self, placeholder_text = 'Insira sua senha', width = WIDTH_ENTRY, show = '*', fg_color = FG_COLOR, placeholder_text_color = TEXT_COLOR, text_color=TEXT_COLOR)
-        self.ent_password.grid(row=1, column=1, padx=10)
+        self.ent_password.grid(row=1, column=1, padx=10, pady=5)
 
 
 class FrameButton(CTk.CTkFrame):
@@ -77,4 +77,5 @@ class AuthenticationInterface(CTk.CTk):
 
 
 if __name__ == '__main__':
-    ...
+    window = AuthenticationInterface()
+    window.mainloop()

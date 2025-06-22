@@ -1,9 +1,5 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
 from src.Model.Entities.Database import Database
-from Utils.ServiceUtils import ServiceUtils
+from src.Utils.Utilities import Utilities
 
 class UserValidation:
     @staticmethod
@@ -12,15 +8,13 @@ class UserValidation:
             if len(username) >= 3:
                 message = 'Usuário cadastrado com sucesso!'
                 status = True
-                return ServiceUtils.generate_status_message(status, message)
-            else:
-                message = ValueError('Username precisa conter pelo menos 3 caracteres')
-                status = False
-                return ServiceUtils.generate_status_message(status, message)
-        else:
-            message = ValueError('Digite seu username')
+                return Utilities.generate_status_message(status, message)
+            message = ValueError('Username precisa conter pelo menos 3 caracteres')
             status = False
-            return ServiceUtils.generate_status_message(status, message)
+            return Utilities.generate_status_message(status, message)
+        message = ValueError('Digite seu username')
+        status = False
+        return Utilities.generate_status_message(status, message)
 
     @staticmethod
     def password_validation(password, confirmation_password):
@@ -29,19 +23,16 @@ class UserValidation:
                 if len(password) >= 8:
                     message = 'Cadastro realizado com sucesso!'
                     status = True
-                    return ServiceUtils.generate_status_message(status, message)
-                else:
-                    message = ValueError('Senha precisa ser no mínimo 8 caracteres!')
-                    status = False
-                    return ServiceUtils.generate_status_message(status, message)
-            else:
-                message = ValueError('Senha e confirmação de senha precisam estar iguais!')
+                    return Utilities.generate_status_message(status, message)
+                message = ValueError('Senha precisa ser no mínimo 8 caracteres!')
                 status = False
-                return ServiceUtils.generate_status_message(status, message)
-        else:
-            message = ValueError('Digite uma senha')
+                return Utilities.generate_status_message(status, message)
+            message = ValueError('Senha e confirmação de senha precisam estar iguais!')
             status = False
-            return ServiceUtils.generate_status_message(status, message)
+            return Utilities.generate_status_message(status, message)
+        message = ValueError('Digite uma senha')
+        status = False
+        return Utilities.generate_status_message(status, message)
 
 
     @staticmethod
@@ -49,10 +40,11 @@ class UserValidation:
         if not Database.verify_cod_profile(cod_profile):
             message = 'Success'
             status = True
-            return ServiceUtils.generate_status_message(status, message)
+            return Utilities.generate_status_message(status, message)
         message = ValueError('Identificador já existe')
         status = False
-        return ServiceUtils.generate_status_message(status, message)
+        return Utilities.generate_status_message(status, message)
+
 
 
 if __name__ == '__main__':

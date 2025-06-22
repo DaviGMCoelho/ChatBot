@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from src.Service.UserService import UserService
+from Service.UserService import UserService
 
 class UserController:
     @staticmethod
@@ -13,6 +13,14 @@ class UserController:
     @staticmethod
     def signin (cod_profile, password):
         return UserService.user_auth(cod_profile, password)
+    
+    @staticmethod
+    def edit_model(model):
+        return UserService.save_text_model(model)
+    
+    @staticmethod
+    def get_profile_data(cod_profile):
+        return UserService.load_profile_data(cod_profile)
     
 
 if __name__ == '__main__':

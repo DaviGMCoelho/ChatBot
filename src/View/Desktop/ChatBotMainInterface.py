@@ -5,9 +5,11 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 from Controller.ChatbotController import ChatbotController
 from View.Desktop.ViewUtils.ResponsiveDesign import ResponsiveDesign
 from View.Desktop.ViewUtils.MessageBubbles import UserBubble, BotBubble
+from View.Desktop.ProfileConfigInterface import ProfileConfigInterface
 
 import customtkinter as CTk
-FG_COLOR = '#878787'
+
+FG_COLOR = "#525151"
 BORDER_COLOR = '#878787'
 
 
@@ -55,8 +57,8 @@ class FrameEntryBox(CTk.CTkFrame):
     def get_message(self):
         user_message = self.input_text.get()
         self.data_frame.add_message_chat(self.data_frame, 'user', user_message) # lento pra aparecer pq só acontece quando executa a função inteira
-        model = ChatbotController('mistral') 
-        response = model.send_response(user_message) # Passar thread sepárada pra melhorar performace / Interrompe a thread principal
+        model = ChatbotController()
+        response = model.send_response(user_message) # Passar thread separada pra melhorar performace / Interrompe a thread principal
         self.data_frame.add_message_chat(self.data_frame, 'assistant', response)
 
 
@@ -65,10 +67,10 @@ class FrameChatbot(CTk.CTkFrame):
         super().__init__(master, **kwargs)
         self.width = (ResponsiveDesign.monitor_width(self) / 3) * 2.0 + 12
         self.height = (ResponsiveDesign.monitor_height(self) / 1.141)
-        self.frm_ChatMessages = FrameChatMessages(self, fg_color = '#C0C0C0', border_color = '#C0C0C0', width = self.width, height = self.height)
+        self.frm_ChatMessages = FrameChatMessages(self, fg_color = "#969696", border_color = '#C0C0C0', width = self.width, height = self.height)
         self.frm_ChatMessages.pack()
         self.frm_EntryBox = FrameEntryBox(self, self.frm_ChatMessages, fg_color = '#878787', border_color = '#878787', width = self.width)
-        self.frm_EntryBox.pack(padx=5, pady=5)
+        self.frm_EntryBox.pack(pady=5)
         
         
 
@@ -78,6 +80,19 @@ class FrameOptionChats(CTk.CTkFrame):
         self.width = (ResponsiveDesign.monitor_width(self) / 3) + 12
         self.height = (ResponsiveDesign.monitor_height(self) / 1.141)
 
+        btn_profiledata = CTk.CTkButton(self, text='Perfil', command=self.open_ProfileConfigInterface)
+        btn_profiledata.grid(row=0, column=0)
+
+
+    def open_ProfileConfigInterface(self):
+        window = ProfileConfigInterface()
+        window.mainloop()
+        print('ariuepa caralho')
+
+
+        #lbl_text = CTk.CTkLabel(self, text='Ariuepa caralho')
+        #lbl_text.pack()
+
 
 class ChatBotMainInterface(CTk.CTk):
     def __init__(self):
@@ -85,14 +100,17 @@ class ChatBotMainInterface(CTk.CTk):
         self.title('ChatBot')
         self.width = ResponsiveDesign.monitor_width(self)
         self.height = ResponsiveDesign.monitor_height(self)
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+        
         self.geometry(f'{self.width}x{self.height}+0+0')
         self.configure(fg_color = FG_COLOR)
 
-        self.option_chats_frame = FrameOptionChats(self, fg_color = 'black', border_color = 'black')
-        self.option_chats_frame.grid(row=0, column=0)
+        self.option_chats_frame = FrameOptionChats(self, fg_color = 'black', border_color = 'black', width=(self.width / 3.28))
+        self.option_chats_frame.grid(row=0, column=0, padx=(5,0), sticky='nsew')
 
-        self.chatbot_frame = FrameChatbot(self, fg_color = "#878787", border_color = '#878787')
-        self.chatbot_frame.grid(row=0, column=1)
+        self.chatbot_frame = FrameChatbot(self, fg_color = FG_COLOR, border_color = FG_COLOR)
+        self.chatbot_frame.grid(row=0, column=1, padx=(0,5), sticky='nsew')
 
 
 if __name__ == '__main__':

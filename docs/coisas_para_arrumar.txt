@@ -1,0 +1,4 @@
+[ X ] - sistema de usuário ativo
+    [ X ] - Importação estranha : Funciona no UserServices mas não na current_user | Design Pattern -> Singleton
+[   ] - importações confusas, usos de sys e os para adicionar no pathlib
+[   ] - Aplicar boas práticas | Pylint / Ler PEP
