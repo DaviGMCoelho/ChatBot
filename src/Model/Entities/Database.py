@@ -111,10 +111,11 @@ class Database:
             cursor.execute(sql_profile_id, (cod_profile,))
             profile_id = cursor.fetchone()
             cursor.execute(sql_messages, profile_id)
+    
         messages = cursor.fetchall()
         new_messages = [{'role': role, 'content': content} for role, content in messages]
         return new_messages
 
 
 if __name__ == '__main__':
-   print(Database.get_user_data("iaDv@355597"))
+   print(Database.message_history("Dvia@334153"))

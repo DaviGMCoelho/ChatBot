@@ -8,6 +8,10 @@
             [ X ] - Cadastro
             [ X ] - Entrada
             [   ] - Editar perfil
+                [   ] - Username
+                [   ] - Senha
+                [ X ] - Modelos padrão
+
             [ X ] - Usuário ativo
                 [ X ] - Definir modelos padrão
 
@@ -16,20 +20,29 @@
             [ X ] - Role
             [ X ] - Content
         [   ] - Métodos
-            [ X ] - Memória
-                [ X ] - Memória recente
+            [   ] - Memória inteligente
+                [ X ] - Memória recente (Histórico conversa)
                 [   ] - Memmória antiga
-                    [   ] - RAG
-                    [   ] - Resumo chat e mensagens
+                    [   ] - Resumo outros chats
+                    [   ] - Pesquisar sobre RAG
+                [   ] - Tabela informações importantes?
+                    Aba de dados importantes do usuário, informações relevantes de forma permanente.
 
     [   ] - Chats (DEPENDE USUÁRIO ATIVO)
         [   ] - Parâmetreos
             [   ] - Cod_Chat
             [   ] - Título
             [   ] - Plano de fundo
+            [   ] - Cod_Usuario
         [   ] - Methods
             [   ] - Criar chats
             [   ] - Prompt personalizado por chat?
+
+[   ] - Memória inteligente
+        [   ] - Memória chat (lista)
+        [   ] - Resumo outros chats
+        [   ] - Tabela informações importantes? (ChatGPT)
+            Aba de dados importantes do usuário, informações relevantes de forma permanente sem resumo.
 
 [ X ] - Conectar com o banco de dados
 [   ] -  

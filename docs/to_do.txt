@@ -1,0 +1,33 @@
+[   ] - System Refactor:
+    [   ] - Static Method to Methods
+    [   ] - Best practices
+        [   ] - Pylint
+        [   ] - Read Python's PEP 8, 20 and 257
+    [ X ] - Fix strange importations (Using Sys and Os)
+    [   ] - Fix cross importations (Auth and Register interface)
+
+
+Folders and files to refactor:
+[   ] - src
+    [   ] - Constants
+        [   ] - Messages (Create an Exception file)
+    [   ] - manager
+        [   ] - model_manager
+    [   ] - Model
+        [   ] - Entities
+            [   ] - CurrentUser
+            [   ] - Database (Transform into a repository file)
+            [   ] - Message
+            [   ] - User
+    [ X ] - Controller
+        [ X ] - ChatbotController
+        [ X ] - UserController
+    [ X ] - Service
+        [ X ] - ChatbotService
+        [ X ] - UserService
+    [ X ] - Utils
+        [ X ] - Utilities
+    [ X ] - Validation
+        [ X ] - Validation
+        [ X ] - MessageValidation
+        [ X ] - UserValidation

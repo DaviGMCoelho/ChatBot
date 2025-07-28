@@ -1,21 +1,14 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-from Controller.UserController import UserController
-from Controller.ChatbotController import ChatbotController
-from View.Desktop.ViewUtils.InformationMessage import InformationMessage
-from View.Desktop.ChatBotMainInterface import ChatBotMainInterface
-
 import customtkinter as CTk
+
+from src.controller.user_controller import UserController
+from src.view.desktop.ViewUtils.InformationMessage import InformationMessage
+from src.view.desktop.chatbot_interface import ChatBotMainInterface
 
 WIDTH_ENTRY = 190
 WIDTH_BUTTOM = 100
 FG_COLOR = 'White'
 BORDER_COLOR = 'White'
 TEXT_COLOR = 'Black'
-IA_MODELS = ChatbotController.get_ia_models()
-
 
 class FrameDataSignup(CTk.CTkFrame):
     def __init__(self, master, **kwargs):
@@ -41,7 +34,8 @@ class FrameButton(CTk.CTkFrame):
     def __init__(self, master, signup_frame, **kwargs):
         super().__init__(master, **kwargs)
         self.signup_frame = signup_frame
-        self.btn_signin = CTk.CTkButton(self, text='Já tenho uma conta', command = lambda: self.open_AuthenticationInterface(signup_frame), text_color = TEXT_COLOR, font=('Arial', 12, 'underline'), fg_color = 'White', width=WIDTH_BUTTOM)
+        self.btn_signin = CTk.CTkButton(self, text='Já tenho uma conta', command = lambda: self.open_AuthenticationInterface(signup_frame), 
+                                        text_color = TEXT_COLOR, font=('Arial', 12, 'underline'), fg_color = 'White', width=WIDTH_BUTTOM)
         self.btn_signin.grid(row=0, column=0, padx=(0, 10))
 
         self.btn_signup = CTk.CTkButton(self, text='Cadastrar', command = lambda: self.signup_frame.button_signup(), text_color = TEXT_COLOR, fg_color = 'Light Gray', width=WIDTH_BUTTOM)
@@ -49,7 +43,7 @@ class FrameButton(CTk.CTkFrame):
 
 
     def open_AuthenticationInterface(self, signup_frame):
-        from View.Desktop.AuthenticationInterface import AuthenticationInterface
+        from src.view.desktop.authentication_interface import AuthenticationInterface
         signup_frame.withdraw()
         register_window = AuthenticationInterface()
         register_window.mainloop()
@@ -75,23 +69,18 @@ class RegisterInterface(CTk.CTk):
         self.frm_button.pack(padx=5, pady=10, side='bottom')
 
 
-    def button_signup(self):  
+    def button_signup(self):
+        user = UserController()
         username = self.frm_signup.ent_username.get()
         password = self.frm_signup.ent_password.get()
         conf_password = self.frm_signup.ent_conf_password.get()
-        message, cod_profile = UserController.signup(username, password, conf_password)
+        message, cod_profile = user.signup(username, password, conf_password)
         if message['status']:
             title = 'Cadastro realizado com sucesso!'
             warning = f'Seu código de identificação: {cod_profile}, anote!'
-            MainInterface = ChatBotMainInterface()
-            MainInterface.mainloop()
+            main_interface = ChatBotMainInterface()
+            main_interface.mainloop()
         else:
             title = 'Ocorreu um erro!'
             warning = f'Erro: {message['message']}'
         InformationMessage(self, title, warning)
-        
-
-
-if __name__ == '__main__':
-    window = RegisterInterface()
-    window.mainloop()

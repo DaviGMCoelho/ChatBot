@@ -1,10 +1,6 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-from Controller.UserController import UserController
-from View.Desktop.ViewUtils.InformationMessage import InformationMessage
-from View.Desktop.ChatBotMainInterface import ChatBotMainInterface
+from src.controller.user_controller import UserController
+from src.view.desktop.ViewUtils.InformationMessage import InformationMessage
+from src.view.desktop.chatbot_interface import ChatBotMainInterface
 
 import customtkinter as CTk
 
@@ -39,13 +35,11 @@ class FrameButton(CTk.CTkFrame):
         self.btn_signup = CTk.CTkButton(self, text='Entrar', command = lambda: self.signin_frame.button_signin(), text_color = TEXT_COLOR, fg_color = 'Light Gray', width=WIDTH_BUTTOM)
         self.btn_signup.grid(row=0, column=1, padx=(10, 0))
 
-
     def open_RegisterInterface(self, signin_frame):
-        from View.Desktop.RegisterInterface import RegisterInterface
+        from src.view.desktop.register_interface import RegisterInterface
         signin_frame.withdraw()
         register_window = RegisterInterface()
         register_window.mainloop()
-    
 
 class AuthenticationInterface(CTk.CTk):
     def __init__(self):
@@ -68,12 +62,13 @@ class AuthenticationInterface(CTk.CTk):
 
     
     def button_signin(self):
+        user = UserController()
         cod_profile = self.frm_signin.ent_cod_profile.get()
         password = self.frm_signin.ent_password.get()
-        message = UserController.signin(cod_profile, password)
+        message = user.signin(cod_profile, password)
         InformationMessage(self, 'Sucesso', message['message'])
-        MainInterface = ChatBotMainInterface()
-        MainInterface.mainloop()
+        main_interface = ChatBotMainInterface()
+        main_interface.mainloop()
 
 
 if __name__ == '__main__':

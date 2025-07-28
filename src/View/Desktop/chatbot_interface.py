@@ -1,17 +1,12 @@
-import os
-import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-from Controller.ChatbotController import ChatbotController
-from View.Desktop.ViewUtils.ResponsiveDesign import ResponsiveDesign
-from View.Desktop.ViewUtils.MessageBubbles import UserBubble, BotBubble
-from View.Desktop.ProfileConfigInterface import ProfileConfigInterface
+from src.controller.chatbot_controller import ChatbotController
+from src.view.desktop.ViewUtils.ResponsiveDesign import ResponsiveDesign
+from src.view.desktop.ViewUtils.MessageBubbles import UserBubble, BotBubble
+from src.view.desktop.profile_config_interface import ProfileConfigInterface
 
 import customtkinter as CTk
 
 FG_COLOR = "#525151"
 BORDER_COLOR = '#878787'
-
 
 class FrameChatMessages(CTk.CTkScrollableFrame):
     def __init__(self, master, **kwargs):
@@ -20,7 +15,8 @@ class FrameChatMessages(CTk.CTkScrollableFrame):
         FrameChatMessages.load_message_history(self)
 
     def load_message_history(self):
-        history = ChatbotController.get_message_history(self)
+        chatbot = ChatbotController()
+        history = chatbot.get_message_history()
         for msg in history:
             origin = msg['role']
             content = msg['content']
@@ -39,8 +35,7 @@ class FrameChatMessages(CTk.CTkScrollableFrame):
 
         self.after(10, lambda: self._parent_canvas.yview_moveto(1.0)) # Scroll automático
         self.update_idletasks()
-
-
+        
 class FrameEntryBox(CTk.CTkFrame):
     def __init__(self, master, data_frame, **kwargs):
         super().__init__(master, **kwargs)
@@ -57,8 +52,8 @@ class FrameEntryBox(CTk.CTkFrame):
     def get_message(self):
         user_message = self.input_text.get()
         self.data_frame.add_message_chat(self.data_frame, 'user', user_message) # lento pra aparecer pq só acontece quando executa a função inteira
-        model = ChatbotController()
-        response = model.send_response(user_message) # Passar thread separada pra melhorar performace / Interrompe a thread principal
+        chatbot = ChatbotController()
+        response = chatbot.send_response(user_message) # Passar thread separada pra melhorar performace / Interrompe a thread principal
         self.data_frame.add_message_chat(self.data_frame, 'assistant', response)
 
 
@@ -85,13 +80,8 @@ class FrameOptionChats(CTk.CTkFrame):
 
 
     def open_ProfileConfigInterface(self):
-        window = ProfileConfigInterface()
-        window.mainloop()
-        print('ariuepa caralho')
-
-
-        #lbl_text = CTk.CTkLabel(self, text='Ariuepa caralho')
-        #lbl_text.pack()
+        profile_config_interface = ProfileConfigInterface()
+        profile_config_interface.mainloop()
 
 
 class ChatBotMainInterface(CTk.CTk):
