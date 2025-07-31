@@ -3,16 +3,6 @@ This module is responsible for validating user input.
 
 Classes: 
     UserValidation: Provides logic for validating user-relatedata.
-
-Methods:
-    __init__: 
-        Initializes validation parameters.
-    username_validation:
-        Validates if the provide username meets validation criteria.
-    password_validation:
-        Validates if the provide password meets validation criteria.
-    cod_profile_validation:
-        Generates a profile code using the username and verifies if already exists.
 '''
 from src.Model.Entities.Database import Database
 from src.utils.utilities import Utilities

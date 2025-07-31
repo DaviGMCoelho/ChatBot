@@ -5,18 +5,6 @@ It includes functionalities such as user registration, authentication, and profi
 
 Classes:
     UserService: Contains all user-related methods.
-
-Methods:
-    _set_current_user: 
-        Saves the current authenticated user (private method).
-    get_profile_data:
-        Retrieves key data related to current user.
-    create_new_user:
-        Creates a new user profile.
-    user_auth:
-        Authenticates auser based on profile code and password.
-    save_text_model:
-        Sets the user's preferred text model.
 '''
 from src.validation.user_validation import UserValidation
 from src.Model.Entities.User import User

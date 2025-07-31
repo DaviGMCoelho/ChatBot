@@ -3,12 +3,6 @@ This module is responsible for validating chatbot messages.
 
 Classes: 
     MessageValidation: Contains logic for verifying message content.
-
-Methods:
-    __init__: 
-        Initializes validation parameters.
-    message_content:
-        Validates a given message.
 '''
 from src.validation.validation import BaseValidation
 from src.utils.utilities import Utilities

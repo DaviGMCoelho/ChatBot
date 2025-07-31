@@ -6,16 +6,6 @@ generating responses using the model, and saving message history to the database
 
 Classes:
     ChatbotService: Provides all chatbot-related functionalities.
-
-Methods:
-    generate_response: 
-        Generates a response using the selected text model.
-    get_models:
-        Retrieves the current user's selected text model.
-    save_message:
-        Saves user and assistant messages to the database.
-    catch_history:
-        Retrieves the current user's message history.
 '''
 from ollama import chat
 

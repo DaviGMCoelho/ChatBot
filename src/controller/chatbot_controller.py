@@ -5,16 +5,6 @@ It handles the logic for calling methods from the ChatbotService class.
 
 Classes:
     ChatbotController: Handles interactions between the user and the chatbot service.
-
-Methods:
-    send_response: 
-        Retrieves the assistant's response.
-    get_message_history: 
-        Returns the user's message history.
-    get_ia_models: 
-        Retrives the available models in the system.
-    get_main_models: 
-        Retrieves the currently selected models for the user.
 '''
 from src.service.chatbot_service import ChatbotService
 from src.Manager.model_manager import ModelManager

@@ -5,16 +5,6 @@ It handles the logic for calling User Service methods.
 
 Classes:
     UserController: Contains all methods that call the User Service.
-
-Methods:
-    signup:
-        Register a new user.
-    signin: 
-        uthentication user.
-    edit_model:
-        Alterate the model used to generate text.
-    get_profile_data:
-        Retrieves the user data.
 '''
 
 from src.service.user_service import UserService
