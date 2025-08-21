@@ -4,7 +4,7 @@ This module is responsible for validating user input.
 Classes: 
     UserValidation: Provides logic for validating user-relatedata.
 '''
-from src.Model.Entities.Database import Database
+from src.repository.user_repository import UserRepository
 from src.utils.utilities import Utilities
 from src.validation.validation import BaseValidation
 
@@ -32,6 +32,7 @@ class UserValidation(BaseValidation):
         Attributes:
             length (int): The minimal allowed content lenght.
         '''
+        super().__init__()
         self.length = 3
         self.length_password = 8
 
@@ -99,8 +100,9 @@ class UserValidation(BaseValidation):
                 - description (str): A message describing the validation result.
         '''
         utils = Utilities()
+        user_repository = UserRepository()
 
-        if Database.verify_cod_profile(cod_profile) is not None:
+        if user_repository.verify_cod_profile(cod_profile):
             return utils.generate_message(False, 'Identificador já existe')
 
         return utils.generate_message(True, 'Sucesso')

@@ -26,6 +26,7 @@ class MessageValidation(BaseValidation):
         Attributes:
             length (int): The minimal allowed message lenght.
         '''
+        super().__init__()
         self.length = 1
 
     def message_content(self, message):

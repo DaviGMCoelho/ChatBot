@@ -1,10 +1,8 @@
 class User:
-    
     def __init__(self, username: str, password: str, cod_profile: str):
         self.username = username
         self.cod_profile = cod_profile
-        self._password = password
-
+        self.password = password
 
     @staticmethod
     def generate_cod_profile(username):

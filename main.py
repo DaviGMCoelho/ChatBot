@@ -9,7 +9,7 @@ Methods:
 '''
 import os
 
-from src.Model.Entities.Database import Database
+from data.database.database import Database
 from src.view.desktop.authentication_interface import AuthenticationInterface
 
 class Main():
@@ -25,7 +25,9 @@ class Main():
         Create the database file and opens the authentication window.
         '''
         if not os.path.exists(r'data\database\chatbot.db'):
-            Database.init_database()
+            db = Database()
+            db.init_database()
+
         window = AuthenticationInterface()
         window.mainloop()
 

@@ -9,7 +9,8 @@ Classes:
 '''
 from ollama import chat
 
-from src.Model.Entities.Database import Database
+from src.repository.user_repository import UserRepository
+from src.repository.chat_repository import ChatRepository
 from src.Model.Entities.Message import Message
 from src.Model.Entities.CurrentUser import CurrentUser
 
@@ -73,11 +74,13 @@ class ChatbotService:
             None
         '''
         user = CurrentUser()
+        chatbot_repository = ChatRepository()
+
         cod_profile = user.get_current_user()['cod_profile']
         message_user = Message('user', user_message)
         message_assistant = Message('assistant', assistant_message)
-        Database.insert_message(message_user, cod_profile)
-        Database.insert_message(message_assistant, cod_profile)
+        chatbot_repository.insert_message(message_user, cod_profile)
+        chatbot_repository.insert_message(message_assistant, cod_profile)
 
     def catch_history(self):
         '''
@@ -87,6 +90,7 @@ class ChatbotService:
             list[dict]: List of dictionaries, each containing the role and content of a message
         '''
         user = CurrentUser()
+        user_repository = UserRepository()
         cod_profile = user.get_current_user()['cod_profile']
-        message_history = Database.message_history(cod_profile)
+        message_history = user_repository.message_history(cod_profile)
         return message_history

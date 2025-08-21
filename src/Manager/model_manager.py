@@ -1,5 +1,4 @@
 import ollama
-from src.Constants.Messages import Messages
 from src.utils.utilities import Utilities
 
 class ModelManager:
@@ -14,6 +13,6 @@ class ModelManager:
                     models_installed.append(model_name)
                 return utils.generate_message(True, models_installed)
             else:
-                return utils.generate_message(False, Messages.MODEL_LOAD_ERROR)
+                return utils.generate_message(False, 'Nenhum modelo instalado ou estrutura inesperada')
         except Exception as e:
             return utils.generate_message(False, e)

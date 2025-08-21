@@ -9,7 +9,7 @@ Classes:
 from src.validation.user_validation import UserValidation
 from src.Model.Entities.User import User
 from src.utils.utilities import Utilities
-from src.Model.Entities.Database import Database
+from src.repository.user_repository import UserRepository
 from src.Model.Entities.CurrentUser import CurrentUser
 
 class UserService:
@@ -38,8 +38,9 @@ class UserService:
             None
         '''
         current = CurrentUser()
+        user_repository = UserRepository()
 
-        data = Database.get_user_data(cod_profile)
+        data = user_repository.get_user_data(cod_profile)
         current.cod_profile = cod_profile
         current.text_model = data['text_model']
 
@@ -71,6 +72,7 @@ class UserService:
         '''
         validation = UserValidation()
         utils = Utilities()
+        user_repository = UserRepository()
 
         cod_profile = ''
         validate_username =  validation.username_validation(username)
@@ -88,7 +90,7 @@ class UserService:
                 break
 
         user = User(username, password, cod_profile)
-        Database.insert_profile(user)
+        user_repository.insert_profile(user)
         self._set_current_user(cod_profile)
         status_message = utils.generate_message(True, 'Cadastro realizado')
         return status_message, cod_profile
@@ -105,8 +107,9 @@ class UserService:
             dict: A status message indicating whether the authentication was successful.
         '''
         utils = Utilities()
+        user_repository = UserRepository()
 
-        auth = Database.authentication_user(cod_profile, password)
+        auth = user_repository.authentication_user(cod_profile, password)
         if auth:
             self._set_current_user(cod_profile)
             message = utils.generate_message(True, 'Login realizado')
@@ -124,7 +127,8 @@ class UserService:
         Returns:
             None
         '''
+        user_repository = UserRepository()
         current = CurrentUser()
         current.text_model = text_model
         cod_profile = current.get_current_user()['cod_profile']
-        Database.set_text_model(text_model, cod_profile)
+        user_repository.set_text_model(text_model, cod_profile)
