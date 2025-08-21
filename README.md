@@ -6,8 +6,8 @@ O projeto ainda em fase de desenvolvimento.
 
 ## 🚀 Tecnologias utilizadas
 - [Python 3.13.2](https://www.python.org/) → linguagem back-end
-- [LangChain](https://www.langchain.com/) → orquestração do pipeline RAG e execução do modelo 
-- [Chroma](https://www.trychroma.com/) → banco vetorial para armazenamento dos embeddings
+- [Ollama](https://www.ollama.com) → gerenciamento e uso da IA
+- [SQLite](https://www.sqlite.org/) → banco sequencial para memória persistente
 - **Bibliotecas utilzadas:** Consulte requirements.txt
 ---
 
@@ -38,7 +38,7 @@ Baixe os arquivos do projeto e execute na sua IDE ou
 Clone o repositório caso estiver com o Git instalado:
 
 ```bash
-git clone https://github.com/seu-usuario/rag-pdf-ai.git
+git clone https://github.com/DaviGMCoelho/ChatBot.git
 ```
 
 Crie e ative um ambiente virtual:
@@ -107,3 +107,4 @@ rag_project/
 
 Gostou do projeto, tem alguma sugestão ou tá fazendo algo parecido? Me chama aí, bora conversar!
 Eu também sou freelancer, quer um específico para você? Só me chamar!
+
